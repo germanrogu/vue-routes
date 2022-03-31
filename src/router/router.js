@@ -21,11 +21,15 @@ const routes = [
       ),
   },
   {
-    path: "/id",
+    path: "/:id",
     component: () =>
       import(
         /*webpackChunkName: "PokemonPage" */ "../modules/pokemon/pages/PokemonPage"
       ),
+    props: (route) => {
+      const { id } = route.params;
+      return isNaN(Number(id)) ?{id:1} : { id: Number(id) };
+    },
   },
   {
     path: "/:pathMatch(.*)*",
