@@ -1,11 +1,22 @@
 <template>
+  <NavBar />
   <router-view />
 </template>
 
 <script>
+// import NavBar from '@/modules/shared/components/NavBar';
+//To Define lazy loading components
+import { defineAsyncComponent } from "vue";
+
 export default {
   name: "App",
-  components: {},
+  components: {
+    NavBar: defineAsyncComponent(() =>
+      import(
+        /*webpackChunkName: "NavBar" */ "@/modules/shared/components/NavBar"
+      )
+    ),
+  },
 };
 </script>
 
